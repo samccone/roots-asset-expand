@@ -1,0 +1,25 @@
+{
+  "name": "roots-asset-expand",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "coffee-script": "1.x.x",
+    "minimatch": "~0.2.14"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "roots": "3.x",
+    "rimraf": "*",
+    "glob": "*",
+    "when": "2.x",
+    "path": "0.4.x"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
