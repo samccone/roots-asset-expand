@@ -29,6 +29,7 @@ Roots Asset Expand - WIP
 ```
 
 > gives you
+
 ```html
 <script src='nested/foo.js' type='text/javascript' ></script>
 <script src='nested/foo1.js' type='text/javascript' ></script>
