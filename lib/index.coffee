@@ -12,7 +12,7 @@ module.exports = (options={}) ->
       lookupPath  = path.join(roots.root, root)
       nodefn.call(glob, lookupPath + "/#{lookup}").then (files) =>
         @assetPaths = files.map (f) =>
-          path.join(path.basename(f))
+          path.relative(roots.root, f)
 
     fs: ->
       category: 'asset-expanded'

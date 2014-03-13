@@ -48,3 +48,14 @@ describe 'simple asset expansion', ->
     should.contain(t, "src='foo.js'")
     should.contain(t, "src='foo1.js'")
     should.contain(t, "src='foo2.js'")
+
+
+describe 'nested asset expansion', ->
+
+  before (done) -> compile_fixture.call(@, 'js-concat-nested', done)
+
+  it 'should expand js includes', ->
+    t = path.join(@public, 'index.html')
+    should.contain(t, "src='nested/foo.js'")
+    should.contain(t, "src='nested/foo1.js'")
+    should.contain(t, "src='nested/foo2.js'")
