@@ -24,7 +24,7 @@ Roots Asset Expand - WIP
 > in a jade file
 
 ```jade
-  // assets(*.js)
+  // assets(nested/*.js)
   h1 hi
 ```
 
