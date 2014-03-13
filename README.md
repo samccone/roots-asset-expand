@@ -12,8 +12,13 @@ Roots Asset Expand - WIP
 > in your app.coffee file
 
 ```coffeescript
-  module.exports =
-    extensions: [assetExpand({lookup: "*.js"})]
+  extensions: [assetExpand({
+    lookup: "nested/*.js"
+    tagName: "script"
+    attributes: {
+      "type": "text/javascript"
+    }
+  })]
 ```
 
 > in a jade file
@@ -21,4 +26,12 @@ Roots Asset Expand - WIP
 ```jade
   // assets(*.js)
   h1 hi
+```
+
+> gives you
+```html
+<script src='nested/foo.js' type='text/javascript' ></script>
+<script src='nested/foo1.js' type='text/javascript' ></script>
+<script src='nested/foo2.js' type='text/javascript' ></script>
+<h1> hi </h1>
 ```

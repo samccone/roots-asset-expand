@@ -49,6 +49,10 @@ describe 'simple asset expansion', ->
     should.contain(t, "src='foo1.js'")
     should.contain(t, "src='foo2.js'")
 
+  it 'should have the correct attributes and tagName', ->
+    t = path.join(@public, 'index.html')
+
+    should.contain(t, "<script src='foo.js' type='text/javascript' ></script>")
 
 describe 'nested asset expansion', ->
 

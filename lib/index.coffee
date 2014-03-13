@@ -4,13 +4,19 @@ path    = require 'path'
 nodefn  = require 'when/node/function'
 
 module.exports = (options={}) ->
-  root    = options.root || "/"
-  lookup  = options.lookup
+  opts             = options
+  opts.root       ||= "/"
+  opts.attributes ||= {}
+
+  getAttributes = ->
+    Object.keys(opts.attributes).map((k) ->
+      "#{k}='#{opts.attributes[k]}'"
+    ).join(" ")
 
   class assetExpand
     constructor: (roots) ->
-      lookupPath  = path.join(roots.root, root)
-      nodefn.call(glob, lookupPath + "/#{lookup}").then (files) =>
+      lookupPath  = path.join(roots.root, opts.root)
+      nodefn.call(glob, lookupPath + "/#{opts.lookup}").then (files) =>
         @assetPaths = files.map (f) =>
           path.relative(roots.root, f)
 
@@ -23,11 +29,11 @@ module.exports = (options={}) ->
     compile_hooks: ->
       category: 'asset-expanded'
       after_file: (ctx) =>
-        _lookup = "<!-- assets(#{lookup})-->"
+        _lookup = "<!-- assets(#{opts.lookup})-->"
 
         index = ctx.content.indexOf(_lookup)
-        insert = @assetPaths.map((v) ->
-          "<script src='#{v}', type='text/javascript'></script>"
+        insert = @assetPaths.map((v) =>
+          "<#{opts.tagName} src='#{v}' #{getAttributes()} ></#{opts.tagName}>"
         ).join("\n")
 
         if (~index)
